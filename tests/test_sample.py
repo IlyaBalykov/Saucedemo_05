@@ -4,7 +4,11 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 def test_sample():
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    browser_options = webdriver.ChromeOptions()
+    browser_options.headless = True
+    driver = webdriver.Chrome(
+        service=ChromeService(ChromeDriverManager().install()), options=browser_options
+    )
     driver.get('https://www.saucedemo.com/')
 
     assert driver.title == 'Swag Labs'
